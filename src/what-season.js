@@ -14,10 +14,11 @@ import { NotImplementedError } from '../extensions/index.js';
 export default function getSeason(date) {
 
   if (!date) {
-    return 'Unable to determine the time of year!';
+    return "Unable to determine the time of year!";
   }
-  if (isNaN(date.getDate())) {
-    return "Invalid date!";
+
+  if (date.toString !== (new Date).toString || !(date instanceof Date)) {
+    throw new Error("Invalid date!");
   }
 
   let month = date.getMonth();
@@ -30,7 +31,7 @@ export default function getSeason(date) {
     return 'summer';
   } else if (month === 8 || month === 9 || month === 10) {
     return 'autumn';
-  } else return 'Invalid date!';
+  } else return "Invalid date!";
 
 
 }
